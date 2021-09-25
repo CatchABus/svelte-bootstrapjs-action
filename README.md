@@ -21,7 +21,10 @@ npm i svelte-bootstrapjs-action
 
 ## Usage
 
-Here is an example using Bootstrap 5 Accordion.
+Before anything else, please afford some time to read more about [Bootstrap 5 JavaScript](https://getbootstrap.com/docs/5.0/getting-started/javascript/).  
+This will also help you understand which Bootstrap JS class and configuration to use depending on DOM element(s).
+
+Here is an example using Bootstrap 5 Accordion.  
 You can also check a demo sample in [Svelte REPL](https://svelte.dev/repl/5ba0bbc752fc42dea52456f0f302259c?version=3.43.0)!
 
 
@@ -42,7 +45,7 @@ You can also check a demo sample in [Svelte REPL](https://svelte.dev/repl/5ba0bb
 </script>
 <div class="my-4">
 	<button on:click={toggleAccordionItems}>
-		Toggle Collapse All Items
+		Toggle Collapse State
 	</button>
 </div>
 <div class="accordion" id="accordionExample">
@@ -67,6 +70,6 @@ You can also check a demo sample in [Svelte REPL](https://svelte.dev/repl/5ba0bb
 
 | Name  | Type   | Description     |
 | ----- | ------ | --------------- |
-| type  | BaseComponent | The Bootstrap 5 JavaScript class to use for creating the instance. |
-| config | Object | The Bootstrap 5 configuration that is passed as a second parameter to constructor for all instances. |
+| type  | N/A | The Bootstrap 5 JavaScript class to use for creating the instance. |
+| config | Object | (Optional) The Bootstrap 5 configuration that is passed as a second parameter to constructor for all instances. |
 | listToAdd | Array | (Optional) An array that is populated with generated Bootstrap instances. |
