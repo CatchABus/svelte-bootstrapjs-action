@@ -7,7 +7,8 @@
   "svelte": "src/index.js",
   "scripts": {
     "build": "rollup -c",
-    "dev": "rollup -c -w"
+    "dev": "rollup -c -w",
+    "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -18,7 +19,9 @@
     "svelte3",
     "action",
     "bootstrap",
+    "bootstrap5",
     "bs",
+    "bs5",
     "bootstrapjs",
     "javascript"
   ],
