@@ -1,24 +1,20 @@
 function createBsInstance(node, args) {
   if (!args.type) {
-    throw new Error("Invalid type! Please assign a boostrap class.");
+    throw new Error("No type was given! Please assign a valid Bootstrap class!");
   }
-
-  if (args.listToAdd != null && !Array.isArray(args.listToAdd)) {
-    throw new Error("Specified list for adding bootstrap instance must be an array!");
+  if (!args.type.getOrCreateInstance) {
+    throw new Error("Specified type is not a valid Bootstrap class!");
   }
-
-  let bsInstance = null;
-  try {
-    bsInstance = new args.type(node, args.config);
-  } catch(err) {
-    throw new Error(`Type "${args.type}" is not a valid constructor!`);
+  if (args.listToAdd && !Array.isArray(args.listToAdd)) {
+    throw new Error("Specified list for adding Bootstrap instance must be an array!");
   }
-  args.listToAdd != null && args.listToAdd.push(bsInstance);
+  const bsInstance = args.type.getOrCreateInstance(node, args.config);
+  args.listToAdd && args.listToAdd.push(bsInstance);
   return bsInstance;
 }
 
 function disposeBsInstance(bsInstance, args) {
-  if (args.listToAdd != null) {
+  if (args.listToAdd) {
     let index = args.listToAdd.indexOf(bsInstance);
     if (index >= 0) {
       args.listToAdd.splice(index, 1);
