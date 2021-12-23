@@ -10,7 +10,7 @@ This is a Svelte action to manage Bootstrap JavaScript.
 
 - Easy to use
 - Handles creation/disposal of Bootstrap instances to avoid memory leaks
-- Access to instances using an array
+- Access to instances using callbacks for `mount, update, destroy` lifecycles.
 - Reactivity
 
 ## Installation
@@ -35,7 +35,7 @@ You can also check a demo sample in [Svelte REPL](https://svelte.dev/repl/5ba0bb
 	import bootstrapjs from "svelte-bootstrapjs-action";
 
 	let bsItems = [];
-	let bsConfig = {type: Collapse, config: {toggle: false}, listToAdd: bsItems};
+	let bsConfig = {type: Collapse, config: {toggle: false}, mount: (instance) => bsItems.push(instance), destroy: (instance) => bsItems.splice(bsItems.indexOf(instance), 1)};
 
 	function toggleAccordionItems(event) {
 		// Using constructor configuration schema
@@ -72,4 +72,6 @@ You can also check a demo sample in [Svelte REPL](https://svelte.dev/repl/5ba0bb
 | ----- | ------ | --------------- |
 | type  | N/A | The Bootstrap 5 JavaScript class to use for creating the instance. |
 | config | Object | (Optional) The Bootstrap 5 configuration that is passed as a second parameter to constructor for all instances. |
-| listToAdd | Array | (Optional) An array that is populated with generated Bootstrap instances. |
+| mount | Function | (Optional) A callback with new bootstrap instance as an argument that is called on element creation. |
+| update | Function | (Optional) A callback with new bootstrap instance as an argument that is called on element update. |
+| destroy | Function | (Optional) A callback with old bootstrap instance as an argument that is called on element destruction. |
