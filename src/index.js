@@ -19,11 +19,12 @@ function bootstrapjs(node, args) {
   bsArgs.mount && bsArgs.mount(obj);
   return {
     update(newArgs) {
-      obj.dispose();
+      const oldObj = obj;
+      oldObj.dispose();
 
       bsArgs = newArgs;
       obj = createBsInstance(node, bsArgs);
-      bsArgs.update && bsArgs.update(obj);
+      bsArgs.update && bsArgs.update(obj, oldObj);
     },
     destroy() {
       bsArgs.destroy && bsArgs.destroy(obj);
