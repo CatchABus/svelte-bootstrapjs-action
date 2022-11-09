@@ -42,9 +42,13 @@ function bootstrapjs(node, args) {
       }
     },
     destroy() {
-      bsArgs.destroy && bsArgs.destroy(obj);
-      obj.dispose();
-      obj = null;
+      if (bsArgs) {
+        bsArgs.destroy && bsArgs.destroy(obj);
+        if (obj) {
+          obj.dispose();
+          obj = null;
+        }
+      }
     }
   };
 }
