@@ -21,13 +21,14 @@ function bootstrapjs(node, args) {
   return {
     update(newArgs) {
       bsArgs = newArgs;
+
+      if (obj) {
+        obj.dispose();
+        obj = null;
+      }
+      
       if (bsArgs) {
         obj = createBsInstance(node, bsArgs);
-      } else {
-        if (obj) {
-          obj.dispose();
-          obj = null;
-        }
       }
     },
     destroy() {
