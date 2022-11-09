@@ -1,42 +1,50 @@
 import { tick } from "svelte";
 
+function createBsInstance(node, args) {
+  if (!args.type) {
+    throw new Error("No type was given! Please assign a valid Bootstrap class!");
+  }
+  if (!args.type.getOrCreateInstance) {
+    throw new Error("Specified type is not a valid Bootstrap class!");
+  }
+  const bsInstance = args.type.getOrCreateInstance(node, args.config);
+  return bsInstance;
+}
+
 function bootstrapjs(node, args) {
   if (!args) {
     return;
   }
 
-  let isUpdating = true;
+  let isMounted = false;
 
   let bsArgs = args;
 
-  if (!bsArgs.type) {
-    throw new Error("No type was given! Please assign a valid Bootstrap class!");
-  }
-  if (!bsArgs.type.getOrCreateInstance) {
-    throw new Error("Specified type is not a valid Bootstrap class!");
-  }
-
-  const obj = new bsArgs.type(node, bsArgs.config);
+  let obj = createBsInstance(node, bsArgs);
   bsArgs.mount && bsArgs.mount(obj);
 
-  tick().then(() => isUpdating = false);
+  tick().then(() => isMounted = true);
 
   return {
     update(newArgs) {
-      if (isUpdating) {
+      if (!isMounted) {
         return;
       }
 
-      isUpdating = true;
-
       bsArgs = newArgs;
-      bsArgs.update && bsArgs.update(obj);
-
-      tick().then(() => isUpdating = false);
+      if (bsArgs) {
+        obj = createBsInstance(node, bsArgs);
+      } else {
+        if (obj) {
+          obj.dispose();
+          obj = null;
+        }
+      }
     },
     destroy() {
       bsArgs.destroy && bsArgs.destroy(obj);
       obj.dispose();
+      obj = null;
     }
   };
 }

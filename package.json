@@ -1,13 +1,13 @@
 {
   "name": "svelte-bootstrapjs-action",
-  "version": "2.0.4",
+  "version": "2.1.0",
   "description": "A Svelte action plugin that enables Bootstrap JavaScript functionality on Bootstrap elements.",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "svelte": "src/index.js",
   "scripts": {
-    "build": "rollup -c",
-    "dev": "rollup -c -w",
+    "build": "rollup -c --bundleConfigAsCjs",
+    "dev": "rollup -c -w --bundleConfigAsCjs",
     "prepublishOnly": "npm run build"
   },
   "repository": {
@@ -32,8 +32,9 @@
   },
   "homepage": "https://github.com/DimitrisRK/svelte-bootstrapjs-action#readme",
   "devDependencies": {
-    "@babel/eslint-parser": "^7.16.5",
-    "@rollup/plugin-node-resolve": "^13.1.1",
-    "rollup": "^2.61.1"
+    "@babel/eslint-parser": "^7.19.1",
+    "@rollup/plugin-node-resolve": "^15.0.1",
+    "rollup": "^3.2.5",
+    "svelte": "^3.52.0"
   }
 }
