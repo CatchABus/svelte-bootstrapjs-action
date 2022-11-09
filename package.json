@@ -1,6 +1,6 @@
 {
   "name": "svelte-bootstrapjs-action",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "A Svelte action plugin that enables Bootstrap JavaScript functionality on Bootstrap elements.",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
