@@ -1,5 +1,3 @@
-import { tick } from "svelte";
-
 function createBsInstance(node, args) {
   if (!args.type) {
     throw new Error("No type was given! Please assign a valid Bootstrap class!");
@@ -16,21 +14,12 @@ function bootstrapjs(node, args) {
     return;
   }
 
-  let isMounted = false;
-
   let bsArgs = args;
-
   let obj = createBsInstance(node, bsArgs);
   bsArgs.mount && bsArgs.mount(obj);
 
-  tick().then(() => isMounted = true);
-
   return {
     update(newArgs) {
-      if (!isMounted) {
-        return;
-      }
-
       bsArgs = newArgs;
       if (bsArgs) {
         obj = createBsInstance(node, bsArgs);
