@@ -77,6 +77,6 @@ You can also check a demo sample in [Svelte REPL](https://svelte.dev/repl/5ba0bb
 | Name  | Type   | Description     |
 | ----- | ------ | --------------- |
 | type  | N/A | The Bootstrap 5 JavaScript class to use for creating the instance. |
-| config | Object | Function | (Optional) The Bootstrap 5 configuration object or callback that is passed as a second parameter to constructor for all instances. |
+| config | Object \| Function | (Optional) The Bootstrap 5 configuration object or callback that is passed as a second parameter to constructor for all instances. |
 | mount | Function | (Optional) A callback with new bootstrap instance as an argument that is called on element creation. |
 | destroy | Function | (Optional) A callback with old bootstrap instance as an argument that is called on element destruction. |
