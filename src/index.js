@@ -5,7 +5,7 @@ function createBsInstance(node, args) {
   if (!args.type.getOrCreateInstance) {
     throw new Error("Specified type is not a valid Bootstrap class!");
   }
-  const bsInstance = args.type.getOrCreateInstance(node, args.config);
+  const bsInstance = args.type.getOrCreateInstance(node, typeof args.config === "function" ? args.config(node) : args.config);
   return bsInstance;
 }
 
