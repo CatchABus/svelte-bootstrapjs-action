@@ -20,15 +20,18 @@ function bootstrapjs(node, args) {
 
   return {
     update(newArgs) {
-      bsArgs = newArgs;
+      // For now, consider updating only if a new instance using a different class is requested
+      if (bsArgs.type != newArgs.type) {
+        bsArgs = newArgs;
 
-      if (obj) {
-        obj.dispose();
-        obj = null;
-      }
-      
-      if (bsArgs) {
-        obj = createBsInstance(node, bsArgs);
+        if (obj) {
+          obj.dispose();
+          obj = null;
+        }
+
+        if (bsArgs) {
+          obj = createBsInstance(node, bsArgs);
+        }
       }
     },
     destroy() {
