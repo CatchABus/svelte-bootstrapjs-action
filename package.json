@@ -5,6 +5,11 @@
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "svelte": "src/index.js",
+  "exports": {
+    ".": {
+      "svelte": "./src/index.js"
+    }
+  },
   "scripts": {
     "build": "rollup -c --bundleConfigAsCjs",
     "dev": "rollup -c -w --bundleConfigAsCjs",
